@@ -18,9 +18,7 @@ const api = (function() {
       data: strJSON,
       success: callback
     });
-
-  }
-
+  };
   const getItems = function(callback) {
     $.getJSON(`${BASE_URL}/items`, callback);
   };
