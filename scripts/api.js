@@ -2,30 +2,30 @@
 /* global $*/
 
 
-const api=(function() {
+const api = (function() {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/selvin-jacob';
   const createItem = function(name, callback) {
     const newItem = {
       name: name
     };
-    JSON.stringify(newItem);
+    const strJSON = JSON.stringify(newItem);
     // With ajax()
     $.ajax({
       url: `${BASE_URL}/items`,
-      method: 'GET',
+      method: 'POST',
       dataType: 'json',
-      data: { part: 'snippet' },
-      success: (data) => {
-        console.log(data)
-      }
+      contentType: 'application/json',
+      data: strJSON,
+      success: callback
     });
+
   }
 
   const getItems = function(callback) {
     $.getJSON(`${BASE_URL}/items`, callback);
   };
   return {
-    //createItem,
+    createItem,
     getItems,
   };
 }());
