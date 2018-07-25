@@ -22,8 +22,19 @@ const api = (function() {
   const getItems = function(callback) {
     $.getJSON(`${BASE_URL}/items`, callback);
   };
+  const updateItem = function(id, updateData, callback) {
+    $.ajax({
+      url: `${BASE_URL}/items/${id}`,
+      method: 'PATCH',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(updateData),
+      success: callback
+    });
+  };
   return {
     createItem,
     getItems,
+    updateItem,
   };
 }());
